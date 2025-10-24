@@ -517,10 +517,10 @@ def api_upload_review():
         }
         
       # Convert all floats in review_item to Decimal
-review_item = convert_floats_to_decimal(review_item)
+            review_item = convert_floats_to_decimal(review_item)
 
 # Now safe to store in DynamoDB
-products_table.put_item(Item=review_item)
+            products_table.put_item(Item=review_item)
 
         
         # Update user's review count
@@ -695,3 +695,4 @@ if __name__ == '__main__':
     
 
     app.run(host='0.0.0.0', port=5000, debug=True)
+
