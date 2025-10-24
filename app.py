@@ -82,7 +82,7 @@ def analyze_product_image(image_bytes):
         for label in labels_response['Labels']:
             labels.append({
                 'name': label['Name'],
-                'confidence': float(label['Confidence']),
+                'confidence': Decimal(str(label['Confidence'])),  # Changed from float to Decimal
                 'parents': [p['Name'] for p in label.get('Parents', [])]
             })
         
@@ -90,7 +90,7 @@ def analyze_product_image(image_bytes):
         for label in moderation_response['ModerationLabels']:
             moderation_labels.append({
                 'name': label['Name'],
-                'confidence': float(label['Confidence']),
+                'confidence': Decimal(str(label['Confidence'])),  # Changed from float to Decimal
                 'parent': label.get('ParentName', '')
             })
         
@@ -99,7 +99,7 @@ def analyze_product_image(image_bytes):
             if text['Type'] == 'LINE':
                 detected_text.append({
                     'text': text['DetectedText'],
-                    'confidence': float(text['Confidence'])
+                    'confidence': Decimal(str(text['Confidence']))  # Changed from float to Decimal
                 })
         
         # Determine product type from labels
@@ -122,7 +122,6 @@ def analyze_product_image(image_bytes):
     except Exception as e:
         print(f"[REKOGNITION] Error: {str(e)}")
         raise
-
 def determine_product_type(labels):
     """Determine product category from detected labels"""
     product_categories = {
@@ -673,3 +672,4 @@ if __name__ == '__main__':
     print("Press CTRL+C to quit\n")
     
     app.run(host='0.0.0.0', port=5000, debug=True)
+
