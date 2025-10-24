@@ -9,6 +9,20 @@ from decimal import Decimal
 import traceback
 import json
 
+def convert_floats_to_decimal(obj):
+    """
+    Recursively convert all float values in dict/list to Decimal
+    so they can be safely stored in DynamoDB.
+    """
+    if isinstance(obj, list):
+        return [convert_floats_to_decimal(i) for i in obj]
+    elif isinstance(obj, dict):
+        return {k: convert_floats_to_decimal(v) for k, v in obj.items()}
+    elif isinstance(obj, float):
+        return Decimal(str(obj))  # Convert float to Decimal
+    else:
+        return obj
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'p1r2o3d4u5c6t7r8e9v10i11e12w13a14n15a16l17y18z19e20r21'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
@@ -224,6 +238,8 @@ def init_aws_resources():
         print(f"\n✗ AWS initialization error: {str(e)}")
         print(traceback.format_exc())
         print("="*60 + "\n")
+
+
 
 # ==================== HTML PAGE ROUTES ====================
 
@@ -500,7 +516,12 @@ def api_upload_review():
             'created_at': datetime.now().isoformat()
         }
         
-        products_table.put_item(Item=review_item)
+      # Convert all floats in review_item to Decimal
+review_item = convert_floats_to_decimal(review_item)
+
+# Now safe to store in DynamoDB
+products_table.put_item(Item=review_item)
+
         
         # Update user's review count
         users_table.update_item(
@@ -672,4 +693,5 @@ if __name__ == '__main__':
     print(f"Server will be available at: http://0.0.0.0:5000")
     print("Press CTRL+C to quit\n")
     
+
     app.run(host='0.0.0.0', port=5000, debug=True)
