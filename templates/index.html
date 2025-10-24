@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review Analyzer - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .navbar-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-card p {
+            opacity: 0.9;
+        }
+        
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🔍 Product Review Analyzer</h1>
+        <div class="navbar-buttons">
+            <a href="/login" class="btn btn-secondary">Login</a>
+            <a href="/register" class="btn btn-primary">Sign Up</a>
+        </div>
+    </nav>
+    
+    <div class="hero">
+        <h2>AI-Powered Product Reviews</h2>
+        <p>Upload product images and get instant AI analysis with quality scores, defect detection, and detailed insights powered by AWS Rekognition</p>
+        <a href="/register" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.2rem;">Get Started Free</a>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🤖</div>
+                <h3>AI Analysis</h3>
+                <p>Advanced image recognition detects product types, labels, and quality issues automatically</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h3>Quality Scoring</h3>
+                <p>Get instant quality scores and defect detection for every product review</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="icon">📈</div>
+                <h3>Analytics Dashboard</h3>
+                <p>Track trends, view statistics, and gain insights from your product reviews</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
